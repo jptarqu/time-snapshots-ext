@@ -42,6 +42,7 @@ cr.plugins_.jptSnapshot = function(runtime)
 		this.type = type;
 		this.runtime = type.runtime;
 		
+		this.SnapshotsList = []
 		// any other properties you need, e.g...
 		// this.myValue = 0;
 	};
