@@ -77,5 +77,11 @@ declare function AddExpression(id: number,			// any positive integer to uniquely
 declare function ACESDone(): void
 
 declare module cr {
-    declare class Property(propTyep: number, name: string,	initial_value: string | number,	description: string) 
+    class Property {
+        constructor(propTyep: number, name: string,
+        initial_value: string | number,	description: string) 
+    }
+}
+declare class IDEInstance {
+    constructor(instance: any)
 }
