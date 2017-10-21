@@ -33,6 +33,7 @@ cr.plugins_.jptSnapshot = function(runtime)
 	// called on startup for each object type
 	typeProto.onCreate = function()
 	{
+		this.SnapshotsManager= new GameSnapshotManager()
 	};
 
 	/////////////////////////////////////
@@ -42,7 +43,6 @@ cr.plugins_.jptSnapshot = function(runtime)
 		this.type = type;
 		this.runtime = type.runtime;
 		
-		this.SnapshotsList = []
 		// any other properties you need, e.g...
 		// this.myValue = 0;
 	};
@@ -153,10 +153,13 @@ cr.plugins_.jptSnapshot = function(runtime)
 	function Acts() {};
 
 	// the example action
-	Acts.prototype.MyAction = function (myparam)
+	Acts.prototype.StartTracking = function (myparam)
 	{
-		// alert the message
-		alert(myparam);
+		this.type.SnapshotsManager.StartTracking(myparam)
+	};
+	Acts.prototype.DoSnapshot = function (myparam)
+	{
+		this.type.SnapshotsManager.DoSnapshot()
 	};
 	
 	// ... other actions here ...
@@ -170,7 +173,8 @@ cr.plugins_.jptSnapshot = function(runtime)
 	// the example expression
 	Exps.prototype.MyExpression = function (ret)	// 'ret' must always be the first parameter - always return the expression's result through it!
 	{
-		ret.set_int(1337);				// return our value
+		ret.set_string(
+			this.type.SnapshotsManager.GetTimeLineSnapshotsAsJson());				// return our value
 		// ret.set_float(0.5);			// for returning floats
 		// ret.set_string("Hello");		// for ef_return_string
 		// ret.set_any("woo");			// for ef_return_any, accepts either a number or string

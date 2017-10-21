@@ -1,14 +1,14 @@
 ﻿function GetPluginSettings()
 {
 	return {
-		"name":			"MyPlugin",				// as appears in 'insert object' dialog, can be changed as long as "id" stays the same
-		"id":			"MyPlugin",				// this is used to identify this plugin and is saved to the project; never change it
+		"name":			"jptSnapshot",				// as appears in 'insert object' dialog, can be changed as long as "id" stays the same
+		"id":			"jptSnapshot",				// this is used to identify this plugin and is saved to the project; never change it
 		"version":		"1.0",					// (float in x.y format) Plugin version - C2 shows compatibility warnings based on this
 		"description":	"<appears at the bottom of the insert object dialog>",
 		"author":		"<your name/organisation>",
 		"help url":		"<your website or a manual entry on Scirra.com>",
 		"category":		"General",				// Prefer to re-use existing categories, but you can set anything here
-		"type":			"world",				// either "world" (appears in layout and is drawn), else "object"
+		"type":			"object",				// either "world" (appears in layout and is drawn), else "object"
 		"rotatable":	true,					// only used when "type" is "world".  Enables an angle property on the object.
 		"flags":		0						// uncomment lines to enable flags...
 					//	| pf_singleglobal		// exists project-wide, e.g. mouse, keyboard.  "type" must be "object".
@@ -70,8 +70,9 @@ AddCondition(0, cf_none, "Is number positive", "My category", "{0} is positive",
 //			 script_name);		// corresponding runtime function name
 
 // example
-AddStringParam("Message", "Enter a string to alert.");
-AddAction(0, af_none, "Alert", "My category", "Alert {0}", "Description for my action!", "MyAction");
+AddObjectParam("typeToTrack", "type to track");
+AddAction(0, af_none, "Add Type to Tracking", "Setup", "Start Tracking {0}", "Start tracking a type. Type's intances will be included in sub-sequent snashots", "StartTracking");
+AddAction(1, af_none, "Do Snapshot", "Snapshots", "Do Snapshot", "Capture positions", "DoSnapshot");
 
 ////////////////////////////////////////
 // Expressions
