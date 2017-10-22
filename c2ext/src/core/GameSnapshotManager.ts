@@ -5,7 +5,7 @@ export class GameSnapshotManager {
     private timelineSnapshots: ObjectsSnapshot[] = []
     private trackedObjectTypes: ObjectType[] = []
     constructor() {
-        
+     
     }
     StartTracking(typeToTrack:ObjectType) {
         this.trackedObjectTypes.push(typeToTrack)
